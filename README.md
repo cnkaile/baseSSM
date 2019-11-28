@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##Spring + SpringMVC + Mybatis
 1. SSM框架整合(Spring Version: 4.3.4.RELEASE; Mybatis Version: 3.3.0)
 2. 常用工具类/工具包
@@ -24,3 +25,7 @@ javax.mail.mail=1.4.7
 
 ###工具类，很多自己工作中用到的工具类，有点乱
 ####有很多的有关微信的开发工具
+=======
+# baseSSM
+Spring SpringMVC Mybatis 整合
+>>>>>>> branch 'master' of https://github.com/cnkaile/baseSSM.git
