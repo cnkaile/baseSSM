@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 是否使用缓存 -->
+		<setting name="cacheEnabled" value="false" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="logImpl" value="LOG4J" />
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	
+	<!-- 配置插件 -->
+	<plugins>
+		<!-- 配置数据库分页拦截器插件 -->
+		<plugin interceptor="com.qcode.core.util.PageInterceptor">
+			<property name="databaseType" value="mysql"/>
+		</plugin>
+	</plugins>
+</configuration> 

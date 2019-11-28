@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+        
+	<!-- 自动扫描注解,排除@Controller的Beean -->
+	<context:component-scan base-package="com.nouser">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+	
+	<!-- =========================================================================== --> 
+	<!-- 数据库/redis配置文件 -->
+	<context:property-placeholder location="classpath:applicationConf.properties"/>
+	<!-- RedisHttpSessionConfiguration -->
+	<bean class ="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+		<!-- 过期时间10分钟 -->
+		<property name="maxInactiveIntervalInSeconds" value="${session.redis.sessiontimeout}"></property>
+	</bean>
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+	    <property name="maxTotal" value="100" />
+	    <property name="maxIdle" value="10" />
+	</bean>
+	<bean id="jedisConnectionFactory"
+      class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+	    <property name="hostName" value="${session.redis.hostName}"/>
+	    <property name="port" value="${session.redis.port}"/>
+	    <property name="password" value="${session.redis.pwd}" />
+	    <property name="timeout" value="${session.redis.timeout}"/>
+	    <property name="usePool" value="true"/>
+	    <property name="poolConfig" ref="jedisPoolConfig"/>
+	</bean>
+
+	<!-- 加载数据库属性配置文件dataSource -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+	    <property name="url" value="${jdbc.jdbcUrl}" />  
+	    <property name="username" value="${jdbc.user}" />  
+	    <property name="password" value="${jdbc.password}" />  
+	    
+	    <!-- 配置初始化大小、最小、最大 -->  
+	    <property name="initialSize" value="${jdbc.initialPoolSize}" />  
+	    <property name="minIdle" value="${jdbc.minPoolSize}" />   
+	    <property name="maxActive" value="${jdbc.maxPoolSize}" />  
+	    
+	    <!-- 配置获取连接等待超时的时间   -->
+	    <property name="maxWait" value="3000" />  
+	    
+	    <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->  
+	    <property name="timeBetweenEvictionRunsMillis" value="60000" />  
+	    
+	    <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->  
+	    <property name="minEvictableIdleTimeMillis" value="300000" />  
+	    
+	    <property name="validationQuery" value="SELECT 'x'" />  
+	    <property name="testWhileIdle" value="true" />  
+	    <property name="testOnBorrow" value="false" />  
+	    <property name="testOnReturn" value="false" />  
+	    
+	    <!-- 打开PSCache，并且指定每个连接上PSCache的大小   -->
+	    <property name="poolPreparedStatements" value="false" />  
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />  
+	    
+	    <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->  
+	    <property name="filters" value="stat" />
+	</bean>
+	
+	<!-- SessionFactory【SQLMapper】 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>  
+        <property name="mapperLocations" value="classpath*:com/qcode/common/sqlmaps/*Mapper.xml"></property>  
+    </bean>
+    
+    <!-- SqlSessionTemplate -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">         
+ 		<constructor-arg index="0" ref="sqlSessionFactory" />
+ 	</bean>
+  	 
+</beans>
