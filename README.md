@@ -25,7 +25,3 @@ javax.mail.mail=1.4.7
 
 ###工具类，很多自己工作中用到的工具类，有点乱
 ####有很多的有关微信的开发工具
-=======
-# baseSSM
-Spring SpringMVC Mybatis 整合
->>>>>>> branch 'master' of https://github.com/cnkaile/baseSSM.git
