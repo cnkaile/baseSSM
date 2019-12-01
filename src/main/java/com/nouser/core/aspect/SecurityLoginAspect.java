@@ -42,7 +42,6 @@ public class SecurityLoginAspect {
 			if(method.isAnnotationPresent(IgnoreSecurity.class)) {
 				return pjp.proceed();
 			}
-			
 		}
 		return null;
 	}
