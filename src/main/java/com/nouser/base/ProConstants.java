@@ -13,5 +13,7 @@ public class ProConstants {
 
 	// 配置文件参数
 	public static final String DEFALUT_PROPERTIES_FILE = "activity.properties";
-
+	
+	//请求信息用户标识
+	public static final String REQUEST_USER_SIGN = "userId";
 }

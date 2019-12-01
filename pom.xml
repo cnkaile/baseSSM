@@ -65,24 +65,29 @@
 			<artifactId>spring-data-commons-core</artifactId>
 			<version>1.4.1.RELEASE</version>
 		</dependency>
+		<!-- spring-web相关		 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-		<!-- spring-web相关
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-		 -->
 		<!-- javax.servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<!-- spring aop依赖 -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.8.13</version>
 		</dependency>
 		<!-- jsp页面支持
 		<dependency>

@@ -82,18 +82,20 @@ public final class RedisUtil {
 	 * @param key
 	 * @param value
 	 */
-	public static void setString(String key, String value) {
+	public static int setString(String key, String value) {
 		Jedis jedis = null;
 		try {
 			value = StringUtils.isEmpty(value) ? "" : value;
 			jedis = getJedis();
 			jedis.set(key, value);
+			return 0;
 		} catch (Exception e) {
 			logger.error("redis连接超时~~",e);
 			senMail();
 		} finally {
 			releaseResource(jedis);
 		}
+		return -1;
 	}
 
 	/**

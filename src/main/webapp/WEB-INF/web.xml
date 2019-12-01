@@ -38,16 +38,42 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>MDCFilter</filter-name>
-		<filter-class>com.qcode.filter.MDCFilter</filter-class>
+		<filter-class>com.nouser.core.filter.MDCFilter</filter-class>
 		<init-param>
 			<param-name>appkey</param-name>
-			<param-value>qcode-zmhs</param-value>
+			<param-value>baseSSM</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>MDCFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>CrossFilter</filter-name>
+		<filter-class>com.nouser.core.filter.AjaxCrossDomainFilter</filter-class>
+		<init-param>
+			<param-name>allowOrigin</param-name>
+			<param-value>http[s]?://*.nouser.cn</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowMethods</param-name>
+			<param-value>GET,POST,PUT,DELETE,OPTIONS</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowHeaders</param-name>
+			<param-value>Content-Type</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CrossFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

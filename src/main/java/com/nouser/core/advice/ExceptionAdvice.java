@@ -1,13 +1,8 @@
-/**
- * @Title:  ExceptionAdvice.java
- * @Package	com.nouser.advice
- * @author:	zhoukl
- * @date:	2019年11月28日 下午5:25:55
- * @version	V1.0
- */
-package com.nouser.advice;
+package com.nouser.core.advice;
 
 import java.util.Map;
+
+import javax.xml.bind.ValidationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -45,6 +40,17 @@ public class ExceptionAdvice {
 //        logger.error("参数解析失败", e);
 		return RespInfoUtils.errorInfo(RespInfoUtils.Exception_ERROR500, "参数解析错误");
 	}
+	
+	
+	/**
+     * 400 - Bad Request
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ValidationException.class)
+    public Map<String, Object> handleValidationException(ValidationException e) {
+//        logger.error("参数验证失败", e);
+        return RespInfoUtils.errorInfo(RespInfoUtils.Exception_ERROR500, "参数解析错误");
+    }
 
 	/**
 	 * 405 - Method Not Allowed

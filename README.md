@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 ##Spring + SpringMVC + Mybatis
 1. SSM框架整合(Spring Version: 4.3.4.RELEASE; Mybatis Version: 3.3.0)
 2. 常用工具类/工具包
 3. 默认使用的是Spring共享Session,不需要可以去掉(1.3.1.RELEASE)
-4. 生成Mybatis的 generator
+4. 生成Mybatis的 generator配置文件
 
 ###工具包
 ````properties
@@ -24,4 +24,6 @@ javax.mail.mail=1.4.7
 ````
 
 ###工具类，很多自己工作中用到的工具类，有点乱
-####有很多的有关微信的开发工具
+
+####REST编程
+[前后端分离springmvc和RESTful理解](https://www.cnblogs.com/gengaixue/p/8972196.html)
