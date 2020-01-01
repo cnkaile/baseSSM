@@ -1,4 +1,4 @@
-package com.nouser.utils;
+package com.nouser.utils.security;
 
 import java.security.MessageDigest;
 

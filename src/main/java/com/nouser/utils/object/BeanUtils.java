@@ -1,4 +1,4 @@
-package com.nouser.utils;
+package com.nouser.utils.object;
 
 import java.util.HashMap;
 import java.util.Iterator;
