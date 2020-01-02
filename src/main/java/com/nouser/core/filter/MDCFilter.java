@@ -11,11 +11,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.nouser.utils.net.IpAddressUtil;
+import com.nouser.utils.unique.UUIdUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.MDC;
 
-import com.nouser.utils.IpAddressUtil;
-import com.nouser.utils.UUIdUtil;
 
 /**
  * MDC过滤器

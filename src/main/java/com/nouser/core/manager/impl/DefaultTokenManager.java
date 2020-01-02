@@ -1,9 +1,9 @@
 package com.nouser.core.manager.impl;
 
+import com.nouser.utils.security.MD5Util_LowerCase;
 import org.apache.commons.lang3.StringUtils;
 
 import com.nouser.core.manager.TokenManager;
-import com.nouser.utils.MD5Util_LowerCase;
 
 /**
  * 默认tokenManager

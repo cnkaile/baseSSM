@@ -1,11 +1,11 @@
 package com.nouser.core.manager;
 
+import com.nouser.utils.connection.RedisUtil;
+import com.nouser.utils.unique.UUIdUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import com.nouser.core.manager.impl.DefaultTokenManager;
-import com.nouser.utils.RedisUtil;
-import com.nouser.utils.UUIdUtil;
 
 /**
  * @Title: SecurityTokenCheck.java
